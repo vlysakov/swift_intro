@@ -49,7 +49,7 @@ func simpleNumbers (_ count: Int) -> [Int] {
     var tmp = [Int]()
     var nextVal = 2
     
-    for i in 2...count {
+    for i in 2...count { 
         tmp.append(i)
     }
     
