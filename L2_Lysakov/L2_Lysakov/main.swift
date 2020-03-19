@@ -28,6 +28,42 @@ func printArray (_ a:[Int]) {
     print()
 }
 
+func fibonachiArray (_ value: inout [Double], _ size: Int) {
+    for i in 0...size {
+        if i == 0 {
+            value.append(0)
+        } else if i == 1 {
+            value.append(1)
+        } else {
+            if i == 94 {
+                print (value[i-1], terminator:" ")
+                print (value[i-2])
+            }
+            value.append(value[i-1]+value[i-2])
+        }
+    }
+}
+
+func simpleNumbers (_ count: Int) -> [Int] {
+    var res = [Int]([2])
+    var tmp = [Int]()
+    var nextVal = 2
+    
+    for i in 2...count {
+        tmp.append(i)
+    }
+    
+    while !tmp.isEmpty {
+        tmp.removeAll(where: {$0%nextVal == 0})
+        if (!tmp.isEmpty) {
+            nextVal = tmp[0]
+            res.append(nextVal)
+        }
+    }
+    
+    return res
+}
+
 var arr = (0..<10).map{ _ in Int.random(in: 1...1000)}
 print ("Исходный массив")
 printArray(arr)
@@ -37,6 +73,17 @@ printArray(arr)
 print("Массив без четных чисел и всех чисел, которые не делятся на 3")
 removeEvenAndThree(&arr)
 printArray(arr)
+arr.removeAll()
+//Вычисление 100 чисел Фибоначчи
+var farr = [Double]()
+fibonachiArray(&farr, 100)
+print("Числа Фибоначчи")
+farr.forEach{print(String(format: "%.0f", $0))}
+
+//Поски простых чисел
+var sarr = simpleNumbers(1000)
+print("Простые числа")
+printArray(sarr)
 
 
 
