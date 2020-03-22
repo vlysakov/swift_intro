@@ -45,21 +45,15 @@ func fibonachiArray (_ value: inout [Double], _ size: Int) {
 }
 
 func simpleNumbers (_ count: Int) -> [Int] {
-    var res = [Int]([2])
-    var tmp = [Int]()
+    var res = [Int]()
+    var tmp = Array(2...count)
     var nextVal = 2
     
-    for i in 2...count { 
-        tmp.append(i)
-    }
-    
-    while !tmp.isEmpty {
+    repeat {
+        nextVal = tmp[0]
+        res.append(nextVal)
         tmp.removeAll(where: {$0%nextVal == 0})
-        if (!tmp.isEmpty) {
-            nextVal = tmp[0]
-            res.append(nextVal)
-        }
-    }
+    } while !tmp.isEmpty
     
     return res
 }
